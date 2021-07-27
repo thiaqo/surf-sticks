@@ -26,7 +26,7 @@ puts 'Creating new user'
 
   new_user.save!
 
-  puts 'Creating another one'
+  puts 'Creating another user'
 end
 
 puts 'Creating new board'
@@ -40,24 +40,20 @@ puts 'Creating new board'
 
   surfboard_attributes = {
     board_type: board_types.sample,
-    length: "#{(5..9).sample}'#{(0..11).sample}\"",
-    volume: "#{(20..80)}L",
-    price_per_day: "$ #{(5..50).sample}",
+    length: (60..119).to_a.sample,
+    volume: (20..80).to_a.sample,
+    price_per_day: (5..50).to_a.sample,
     fin_type:fin_types.sample,
     brand: brands.sample,
     description: description.sample,
   }
 
   new_board = Surfboard.new(surfboard_attributes)
+  new_board.user = User.all.sample
 
   new_board.save!
 
-  puts 'Creating another one'
+  puts 'Creating another surfboard'
 end
 
 puts 'Finished seeding :)'
-
-# validates :username, :name, :email, presence: true
-
-# validates :length, :volume, :price_per_day, presence: true, numericality: { only_integer: true }
-# validates :board_type, :fin_type, :brand, :description, presence: true
