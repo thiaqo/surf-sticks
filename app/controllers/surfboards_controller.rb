@@ -4,6 +4,8 @@ class SurfboardsController < ApplicationController
   end
 
   def show
+    @surfboard = Surfboard.find(params[:id])
+    # raise
   end
 
   def new
