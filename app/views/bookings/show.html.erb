@@ -1,0 +1,29 @@
+<div class="container my-5">
+  <div class="row justify-content-between">
+      <h1>Booking for <%= @booking.surfboard.name %></h1>
+      <div>
+        <%= link_to "Back to surfboard", surfboard_path(@booking.surfboard), class: "btn btn-outline-secondary" %>
+      </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <div class="card-trip">
+        <img src="#placeholder" alt="placeholder image">
+        <div class="card-trip-infos">
+          <div>
+            <p><strong>Collection date: </strong><%= @booking.collection_date %></p>
+            <p><strong>Return date: </strong><%= @booking.return_date %></p>
+            <h2 class="card-trip-pricing">Price per day: $<%= @booking.price_per_day %></h2>
+            <p><strong>Status: </strong><%= @booking.accepted %></p>
+            <p><strong>Owner: </strong><%= @booking.surfboard.user.name %></p>
+            <img src="placeholder for user (user/renter - based on who views page) avatar" alt="placeholder">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:update, :create] do
+  resources :bookings, only: [:show, :update, :create] do
     resources :reviews, only: [:new, :create]
   end
 end

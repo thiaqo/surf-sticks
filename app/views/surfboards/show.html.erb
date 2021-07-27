@@ -1,20 +1,13 @@
-<h1>Surfboards#show</h1>
-<p>Find me in app/views/surfboards/show.html.erb</p>
-<h1>Reviews#new</h1>
-<form action="surfboards" method="post"></form>
-<lable for="review">Review</lable>
-<input type="submit">
-<!-- <p>Find me in app/views/reviews/new.html.erb</p> -->
-
-<div class="container">
-  <div class="row">
-    <div class="col">
+<div class="container my-5">
+  <div class="row justify-content-between">
       <h1><%= @surfboard.name %></h1>
-    </div>
+      <div>
+        <%= link_to "Make a booking", new_surfboard_booking_path(@surfboard), class: "btn btn-outline-secondary" %>
+      </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container my-5">
   <div class="row">
     <div class="col">
       <div class="card-trip">
@@ -27,10 +20,20 @@
             <p><strong>Board type: </strong><%= @surfboard.board_type %></p>
             <p><strong>Fin type: </strong><%= @surfboard.fin_type %></p>
             <p><strong>Brand: </strong><%= @surfboard.brand %></p>
-          <h2 class="card-trip-pricing">Price per day: $<%= @surfboard.price_per_day %></h2>
-          <img src="placeholder for user (renter) avatar" alt="placeholder">
+            <h2 class="card-trip-pricing">Price per day: $<%= @surfboard.price_per_day %></h2>
+            <img src="placeholder for user (renter) avatar" alt="placeholder">
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+<div class="row my-5">
+  <div class="col">
+    <h2>Reviews for <%= @surfboard.name %></h2>
+    <% @surfboard.reviews.each do |review| %>
+      <p><%= review.rating %></p>
+      <p><%= review.comment %></p>
+    <% end %>
+  </div></div>
 </div>

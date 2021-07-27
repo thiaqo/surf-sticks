@@ -10,12 +10,15 @@ class BookingsController < ApplicationController
     @booking.surfboard = @surfboard
     # Temporary line of code until we have current_user
     @booking.user = User.all.sample
-    # raise
     if @booking.save
       redirect_to booking_path(@booking)
     else
       render :new
     end
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   def update
