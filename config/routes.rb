@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'surfboards/index'
+  get 'surfboards/show'
+  get 'surfboards/new'
+  get 'surfboards/edit'
   devise_for :users
   
   root to: 'surfboards#index'
