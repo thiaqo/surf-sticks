@@ -5,3 +5,59 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+puts 'Cleaning database...'
+
+User.destroy_all
+
+puts 'Creating new user'
+
+50.times do
+
+  user_attributes = {
+    username: "@#{Faker::FunnyName.name.gsub(" ", "").downcase}",
+    name: Faker::Name.first_name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password(min_length: 6),
+  }
+
+  new_user = User.new(user_attributes)
+
+  new_user.save!
+
+  puts 'Creating another one'
+end
+
+puts 'Creating new board'
+
+50.times do
+
+  brands = ['channel islands', 'lost', 'catch surf', 'south bay', 'firewire', 'pyzel']
+  board_types = ['long board', 'short board', 'potato board', 'soft top']
+  fin_types = ['single fin', 'twin fin', 'thruster fin', 'quad fin']
+  description = ['cooler than your mom','great for tiny waves', 'super sick', 'kinda sick']
+
+  surfboard_attributes = {
+    board_type: board_types.sample,
+    length: "#{(5..9).sample}'#{(0..11).sample}\"",
+    volume: "#{(20..80)}L",
+    price_per_day: "$ #{(5..50).sample}",
+    fin_type:fin_types.sample,
+    brand: brands.sample,
+    description: description.sample,
+  }
+
+  new_board = Surfboard.new(surfboard_attributes)
+
+  new_board.save!
+
+  puts 'Creating another one'
+end
+
+puts 'Finished seeding :)'
+
+# validates :username, :name, :email, presence: true
+
+# validates :length, :volume, :price_per_day, presence: true, numericality: { only_integer: true }
+# validates :board_type, :fin_type, :brand, :description, presence: true
