@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :surfboards
   has_many :reviews
 
-  validates :username, :name, :email, presence: true
+  validates :username, :name, presence: true
 end
