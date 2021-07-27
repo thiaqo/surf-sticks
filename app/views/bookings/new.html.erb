@@ -1,2 +1,9 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
+<h2>
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :collection_date %>
+  <%= f.input :return_date %>
+  <%= f.submit %>
+<% end %>
+</h2>
