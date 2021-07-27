@@ -10,7 +10,6 @@
 puts 'Cleaning database...'
 
 User.destroy_all
-Surfboard.destroy_all
 
 puts 'Creating new user'
 
@@ -58,8 +57,3 @@ puts 'Creating new board'
 end
 
 puts 'Finished seeding :)'
-
-# validates :username, :name, :email, presence: true
-
-# validates :length, :volume, :price_per_day, presence: true, numericality: { only_integer: true }
-# validates :board_type, :fin_type, :brand, :description, presence: true

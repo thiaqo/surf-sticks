@@ -1,2 +1,22 @@
-<h1>Surfboards#new</h1>
-<p>Find me in app/views/surfboards/new.html.erb</p>
+<h1>New Surfboard</h1>
+
+<%= simple_form_for(@surfboard) do |f| %>
+  <%#= f.error_notification %>
+  <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :board_type %>
+    <%= f.input :length %>
+    <%= f.input :brand %>
+    <%= f.input :price_per_day %>
+    <%= f.input :fin_type %>
+    <%= f.input :volume %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', surfboards_path %>
