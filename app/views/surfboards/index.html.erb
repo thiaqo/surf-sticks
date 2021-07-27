@@ -7,11 +7,12 @@
 
   <div class="row">
     <% @surfboards.each do |surfboard| %>
-      <div class="col">
+      <div class="col my-3">
         <div class="card-product">
-          <% if surfboard.photo.attached? %>
-            <%= cl_image_tag surfboard.photo.key %>
-          <% end %>
+          <img src="#placeholder" alt="blank placeholder">
+          <%# if surfboard.photo.attached? %>
+            <%#= cl_image_tag surfboard.photo.key %>
+          <%# end %>
           <div class="card-product-infos">
             <h2><%= surfboard.name %></h2>
             <p><%= surfboard.description %></p>
