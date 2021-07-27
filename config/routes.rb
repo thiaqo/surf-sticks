@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
-  get 'bookings/new'
-  get 'bookings/update'
-  get 'reviews/new'
-  get 'surfboards/index'
-  get 'surfboards/show'
-  get 'surfboards/new'
-  get 'surfboards/edit'
   devise_for :users
   
   root to: 'surfboards#index'
-  get '/dashboard', to: 'users#dashboard'
 
-  resources :surfboards, except: :destroy do
+  get 'users/:id/dashboard', to: 'users#dashboard'
+  resources :users, only: [] do
+    resources :surfboards, only: [:new, :create]
+  end
+
+  resources :surfboards, only: [:index, :show, :edit, :update, :create] do
     resources :bookings, only: [:new, :create]
   end
 
