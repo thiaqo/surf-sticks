@@ -2,6 +2,7 @@ class Surfboard < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
+  has_one_attached :photo
   # We will need to add the line below once we incorporate cloudinary
   # has_one_attached :photo
 
