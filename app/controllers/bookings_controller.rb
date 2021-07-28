@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :find_booking, only: [:show, :update]
+
   def new
     @booking = Booking.new
     @surfboard = Surfboard.find(params[:surfboard_id])
@@ -16,13 +18,13 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show
-    @booking = Booking.find(params[:id])
-  end
+  def show; end
 
   def update
-    @booking = Booking.new(params.require(:booking).permit(:accepted))
+    @booking.accepted = accepted_to_boolean
+    @booking.save
     raise
+    redirect_to dashboard_path(current_user)
   end
 
   private
@@ -31,7 +33,11 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:collection_date, :return_date)
   end
 
-  def booking_params_update
-    params.require(:booking).permit(:accepted)
+  def accepted_to_boolean
+    params[:booking][:accepted] == "true"
+  end
+
+  def find_booking
+    @booking = Booking.find(params[:id])
   end
 end

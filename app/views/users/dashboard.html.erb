@@ -62,15 +62,10 @@
           <p><strong>Total revenue from booking: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
         </div>
       </div>
-<<<<<<< HEAD
+
       <div class="d-flex justify-content-around m-3">
-        <%= link_to "Accept", booking_path(booking => { :accepted => true }), method: :patch, class: "btn btn-sm btn-outline-success" %>
-        <%= link_to "Decline", booking_path(booking => { :accepted => false }), method: :patch, class: "btn btn-sm btn-outline-danger" %>
-=======
-      <div class="d-flex justify-content-around">
-        <%= link_to "Accept", booking_path(booking), method: :patch, class: "btn btn-sm btn-outline-success" %>
-        <%= link_to "Decline", booking_path(booking), method: :patch, accepted: false, class: "btn btn-sm btn-outline-danger" %>
->>>>>>> 4cf470efea25d3828f8a4839806298995bdf94a9
+        <%= link_to "Accept", booking_path(booking, booking: { accepted: true }), method: :patch, class: "btn btn-sm btn-outline-success" %>
+        <%= link_to "Decline", booking_path(booking, booking: { accepted: false }), method: :patch, accepted: false, class: "btn btn-sm btn-outline-danger" %>
       </div>
       <% end %>
     </div>
