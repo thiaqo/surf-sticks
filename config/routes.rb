@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  root to: 'surfboards#index'
+  root to: 'pages#home'
 
   get 'users/:id/dashboard', to: 'users#dashboard'
   resources :users, only: [] do
