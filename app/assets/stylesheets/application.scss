@@ -11,3 +11,11 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+h1, h2, h3, h4, a, p, body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, a, p, body, .row, .container {
+  padding: 0;
+}
