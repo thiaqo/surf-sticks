@@ -62,7 +62,11 @@ GEM
       execjs (< 2.8.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
+<<<<<<< HEAD
     bootsnap (1.7.5)
+=======
+    bootsnap (1.7.6)
+>>>>>>> 1b44184ba4d974f16b9157cd098128a93f70dc9f
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -95,8 +99,13 @@ GEM
     ffi (1.15.3)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
+<<<<<<< HEAD
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+=======
+    globalid (0.5.1)
+      activesupport (>= 5.0)
+>>>>>>> 1b44184ba4d974f16b9157cd098128a93f70dc9f
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -115,7 +124,11 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.7)
+<<<<<<< HEAD
     nokogiri (1.11.7-x86_64-darwin)
+=======
+    nokogiri (1.11.7-x86_64-linux)
+>>>>>>> 1b44184ba4d974f16b9157cd098128a93f70dc9f
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
@@ -229,7 +242,11 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+<<<<<<< HEAD
   x86_64-darwin-20
+=======
+  x86_64-linux
+>>>>>>> 1b44184ba4d974f16b9157cd098128a93f70dc9f
 
 DEPENDENCIES
   autoprefixer-rails (= 10.2.5)
@@ -259,7 +276,14 @@ DEPENDENCIES
   webpacker (~> 4.0)
 
 RUBY VERSION
+<<<<<<< HEAD
    ruby 2.6.6p146
 
 BUNDLED WITH
    2.2.20
+=======
+   ruby 2.7.3p183
+
+BUNDLED WITH
+   2.2.22
+>>>>>>> 1b44184ba4d974f16b9157cd098128a93f70dc9f

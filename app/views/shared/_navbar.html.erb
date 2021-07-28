@@ -17,6 +17,9 @@
       <li class="nav-item-active">
         <%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", class: "nav-link" %>
       </li>
+      <li class="nav-item-active">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+      </li>
         <li class="nav-item dropdown">
           <%= image_tag "surfer.jpeg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
