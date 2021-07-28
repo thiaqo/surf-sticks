@@ -8,8 +8,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @surfboard = Surfboard.find(params[:surfboard_id])
     @booking.surfboard = @surfboard
-    # Temporary line of code until we have current_user
-    @booking.user = User.all.sample
+    @booking.user = User.find(current_user.id)
     if @booking.save
       redirect_to booking_path(@booking)
     else
