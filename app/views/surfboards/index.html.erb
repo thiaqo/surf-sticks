@@ -11,10 +11,9 @@
       <%= link_to surfboard_path(surfboard) do %>
 
       <div class="card-product">
-        <img src="#placeholder" alt="blank placeholder">
-        <%# if surfboard.photo.attached? %>
-        <%#= cl_image_tag surfboard.photo.key %>
-        <%# end %>
+        <% if surfboard.photo.attached? %>
+        <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
         <div class="card-product-infos">
           <h2><%= surfboard.name %></h2>
           <p><%= surfboard.description %></p>
