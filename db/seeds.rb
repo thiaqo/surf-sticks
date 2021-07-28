@@ -39,7 +39,7 @@ puts 'Creating new board'
   puts 'Creating another surfboard'
 
   brands = ['channel islands', 'lost', 'catch surf', 'south bay', 'firewire', 'pyzel']
-  board_types = ['long board', 'short board', 'potato board', 'soft top']
+  board_types = ['long board', 'short board', 'soft top']
   fin_types = ['single fin', 'twin fin', 'thruster fin', 'quad fin']
   description = ['cooler than your mom','great for tiny waves', 'super sick', 'kinda sick']
 
