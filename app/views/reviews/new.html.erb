@@ -1,2 +1,10 @@
 <h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<form action="surfboards" method="post"></form>
+<lable for="review">Review</lable>
+<input type="submit">
+<!-- <p>Find me in app/views/reviews/new.html.erb</p> -->
+<%= simple_form_for @review do |f| %>
+ <%=f.input :content %>
+ <%=f.submit class: 'btn btn-primary' %>
+ <% end %>
+

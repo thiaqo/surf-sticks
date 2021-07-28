@@ -1,12 +1,13 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
+<div class="container my-5">
+  <div class="row justify-content-between">
       <h1><%= @surfboard.name %></h1>
-    </div>
+      <div>
+        <%= link_to "Make a booking", new_surfboard_booking_path(@surfboard), class: "btn btn-outline-secondary" %>
+      </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container my-5">
   <div class="row">
     <div class="col">
       <div class="card-trip">
@@ -19,11 +20,26 @@
             <p><strong>Board type: </strong><%= @surfboard.board_type %></p>
             <p><strong>Fin type: </strong><%= @surfboard.fin_type %></p>
             <p><strong>Brand: </strong><%= @surfboard.brand %></p>
+<<<<<<< HEAD
             <p><strong>Username: </strong><%= @surfboard.user.username %></p>
           <h2 class="card-trip-pricing">Price per day: $<%= @surfboard.price_per_day %></h2>
           <img src="placeholder for user (renter) avatar" alt="placeholder">
+=======
+            <h2 class="card-trip-pricing">Price per day: $<%= @surfboard.price_per_day %></h2>
+            <img src="placeholder for user (renter) avatar" alt="placeholder">
+          </div>
+>>>>>>> 47f340c16ba6db4d80ddf4fac803fe956a21caf9
         </div>
       </div>
     </div>
   </div>
+
+<div class="row my-5">
+  <div class="col">
+    <h2>Reviews for <%= @surfboard.name %></h2>
+    <% @surfboard.reviews.each do |review| %>
+      <p><%= review.rating %></p>
+      <p><%= review.comment %></p>
+    <% end %>
+  </div></div>
 </div>

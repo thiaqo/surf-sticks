@@ -10,10 +10,12 @@ class SurfboardsController < ApplicationController
 
   def new
     @surfboard = Surfboard.new
+    @user = User.find(params[:user_id])
   end
 
   def create
     @surfboard = Surfboard.new(surfboard_params)
+    @surfboard.user = User.find(params[:user_id])
     if @surfboard.save
       redirect_to surfboard_path(@surfboard), notice: 'Surfboard was successfully created.'
     else
