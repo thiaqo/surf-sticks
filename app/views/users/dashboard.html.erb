@@ -16,7 +16,7 @@
 
       <div class="card-product">
         <img src="borrower_avatar" />
-        <div class="card-product-infos">
+        <div class="card-product-infos p-3">
           <h4><%= booking.user.email %></h4>
           <p><strong>Borrower: </strong></p>
           <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
@@ -50,12 +50,11 @@
 
     <% unless @pending_surfboard_bookings.empty?  %>
     <div class="col-md-6">
-      <h3>Pending bookings</h3>
+      <h3 class="m-2">Pending bookings</h3>
       <% @pending_surfboard_bookings.each do |booking| %>
       <div class="card-product">
         <img src="borrower_avatar" />
-        <div class="card-product-infos">
-          <h4><%= booking.user.email %></h4>
+        <div class="card-product-infos m-3">
           <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
           <p><strong>Collection date: </strong><%= booking.collection_date %></p>
           <p><strong>Return date: </strong><%= booking.return_date %></p>
@@ -63,7 +62,7 @@
           <p><strong>Total revenue from booking: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
         </div>
       </div>
-      <div class="d-flex justify-content-around">
+      <div class="d-flex justify-content-around m-3">
         <%= link_to "Accept", booking_path(booking => { :accepted => true }), method: :patch, class: "btn btn-sm btn-outline-success" %>
         <%= link_to "Decline", booking_path(booking => { :accepted => false }), method: :patch, class: "btn btn-sm btn-outline-danger" %>
       </div>
