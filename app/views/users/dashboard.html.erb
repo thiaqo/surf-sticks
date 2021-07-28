@@ -1,59 +1,79 @@
 <div class="container my-5">
   <div class="row justify-content-between">
-      <h1><%= current_user.name %></h1>
-      <div>
-        <%= link_to "Add a surfboard", new_user_surfboard_path(current_user), class: "btn btn-outline-secondary" %>
-      </div>
+    <h1><%= current_user.name %></h1>
+    <div>
+      <%= link_to "Add a surfboard", new_user_surfboard_path(current_user), class: "btn btn-outline-secondary" %>
+    </div>
   </div>
 </div>
 
 <div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 col-lg 4">
+      <h2 class="text-center">Upcoming bookings</h2>
+      <div class="bookings-container"></div>
+    </div>
+    <div class="col-md-6 col-lg 4">
+      <h2 class="text-center">Pending bookings</h2>
+      <div class="bookings-container"></div>
+    </div>
+    <div class="col-md-6 col-lg 4">
+      <h2 class="text-center">Past bookings</h2>
+      <div class="bookings-container"></div>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="col">
+      <h2 class="text-center">Your bookings</h2>
+
+      <% current_user.bookings.each do |booking| %>
+
+      <div class="card-trip my-4">
+        <img src="#placeholder" alt="placeholder image">
+        <div class="card-trip-infos">
+          <div>
+            <p><strong>Collection date: </strong><%= booking.collection_date %></p>
+            <p><strong>Return date: </strong><%= booking.return_date %></p>
+            <h2 class="card-trip-pricing">Price per day: $<%= booking.price_per_day %></h2>
+            <p><strong>Status: </strong><%= booking.accepted %></p>
+            <img src="placeholder for user (borrower) avatar" alt="placeholder">
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+
+
   <div class="row my-5">
     <div class="col">
       <h2 class="text-center">Your surfboards</h2>
 
       <% current_user.surfboards.each do |surfboard| %>
 
-        <div class="card-trip my-4">
-          <img src="#placeholder" alt="placeholder image">
-          <div class="card-trip-infos">
-            <div>
-              <h2><%= surfboard.description %></h2>
-              <p><strong>Length: </strong><%= surfboard.length %> inches</p>
-              <p><strong>Volume: </strong><%= surfboard.volume %></p>
-              <p><strong>Board type: </strong><%= surfboard.board_type %></p>
-              <p><strong>Fin type: </strong><%= surfboard.fin_type %></p>
-              <p><strong>Brand: </strong><%= surfboard.brand %></p>
-              <h2 class="card-trip-pricing">Price per day: $<%= surfboard.price_per_day %></h2>
-              <img src="placeholder for user (renter) avatar" alt="placeholder">
-            </div>
+      <div class="card-trip my-4">
+        <img src="#placeholder" alt="placeholder image">
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= surfboard.description %></h2>
+            <p><strong>Length: </strong><%= surfboard.length %> inches</p>
+            <p><strong>Volume: </strong><%= surfboard.volume %></p>
+            <p><strong>Board type: </strong><%= surfboard.board_type %></p>
+            <p><strong>Fin type: </strong><%= surfboard.fin_type %></p>
+            <p><strong>Brand: </strong><%= surfboard.brand %></p>
+            <h2 class="card-trip-pricing">Price per day: $<%= surfboard.price_per_day %></h2>
+            <img src="placeholder for user (renter) avatar" alt="placeholder">
           </div>
         </div>
+      </div>
 
       <% end %>
     </div>
   </div>
 
-  <div class="row my-5">
-    <div class="col">
-      <h2 class="text-center">Your bookings</h2>
 
-      <% current_user.bookings.each do |booking| %>
-
-        <div class="card-trip my-4">
-          <img src="#placeholder" alt="placeholder image">
-          <div class="card-trip-infos">
-            <div>
-              <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-              <h2 class="card-trip-pricing">Price per day: $<%= booking.price_per_day %></h2>
-              <p><strong>Status: </strong><%= booking.accepted %></p>
-              <img src="placeholder for user (borrower) avatar" alt="placeholder">
-            </div>
-          </div>
-        </div>
-
-      <% end %>
-    </div>
-  </div>
 </div>
