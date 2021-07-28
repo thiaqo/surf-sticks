@@ -29,6 +29,6 @@ class SurfboardsController < ApplicationController
   private
 
   def surfboard_params
-    params.require(:surfboard).permit(:length, :volume, :price_per_day, :board_type, :fin_type, :brand, :description)
+    params.require(:surfboard).permit(:length, :volume, :price_per_day, :board_type, :fin_type, :brand, :description, :photo)
   end
 end
