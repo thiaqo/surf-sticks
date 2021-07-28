@@ -21,11 +21,17 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking = Booking.new(params.require(:booking).permit(:accepted))
+    raise
   end
 
   private
 
   def booking_params
     params.require(:booking).permit(:collection_date, :return_date)
+  end
+
+  def booking_params_update
+    params.require(:booking).permit(:accepted)
   end
 end
