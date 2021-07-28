@@ -11,7 +11,11 @@
   <div class="row my-5">
     <div class="col-md-6 col-lg 4">
       <h2 class="text-center">Upcoming bookings</h2>
-      <div class="bookings-container"></div>
+      <div class="bookings-container">
+        <% current_user.surfboards.bookings.where("collection_date < ?", Date.today).where(accepted: nil) %>
+        User.first.bookings.
+
+      </div>
     </div>
     <div class="col-md-6 col-lg 4">
       <h2 class="text-center">Pending bookings</h2>
