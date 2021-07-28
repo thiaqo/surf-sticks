@@ -1,11 +1,15 @@
-<h1>Reviews#new</h1>
-<form action="surfboards" method="post"></form>
-<lable for="review">Review</lable>
-<input type="submit">
-<!-- <p>Find me in app/views/reviews/new.html.erb</p> -->
-<%= simple_form_for @review do |f| %>
- <%=f.input :content %>
- <%= f.input :photo, as: :file %>
- <%=f.submit class: 'btn btn-primary' %>
- <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= simple_form_for [@booking, @review] do |f| %>
+        <%=f.input :rating %>
+        <%=f.input :comment %>
+        <%=f.submit class: 'btn btn-sm btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
 
