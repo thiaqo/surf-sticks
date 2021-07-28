@@ -192,10 +192,12 @@
 
   <div class="row my-3">
     <% current_user.surfboards.each do |surfboard| %>
-    <div class="col-md-6">
+    <div class="col-md-6 my-4">
 
-      <div class="card-trip my-4">
-        <img src="#placeholder" alt="placeholder image">
+      <div class="card-trip h-100">
+        <% if surfboard.photo.attached? %>
+          <%= cl_image_tag surfboard.photo.key %>
+        <% end %>
         <div class="card-trip-infos">
           <div>
             <h2><%= surfboard.description %></h2>
