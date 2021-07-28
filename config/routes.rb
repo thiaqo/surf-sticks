@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root to: 'surfboards#index'
 
-  get 'users/:id/dashboard', to: 'users#dashboard'
+  get 'users/:id/dashboard', to: 'users#dashboard', as: :dashboard
   resources :users, only: [] do
     resources :surfboards, only: [:new, :create]
   end
