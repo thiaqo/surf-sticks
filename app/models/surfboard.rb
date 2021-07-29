@@ -5,5 +5,5 @@ class Surfboard < ApplicationRecord
   has_one_attached :photo
 
   validates :length, :volume, :price_per_day, presence: true, numericality: { only_integer: true }
-  validates :name, :board_type, :fin_type, :brand, :description, presence: true
+  validates :name, :board_type, :fin_type, :brand, :description, :address, presence: true
 end
