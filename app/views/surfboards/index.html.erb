@@ -1,22 +1,37 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-5">
     <div class="col">
-      <h1>Surf Sticks</h1>
+      <h2>All surfboards</h2>
     </div>
   </div>
 
   <div class="row">
     <% @surfboards.each do |surfboard| %>
-    <div class="col-md-6 my-3">
+    <div class="col-12 mb-3">
       <%= link_to surfboard_path(surfboard) do %>
 
-      <div class="card-product">
-        <% if surfboard.photo.attached? %>
-          <%= cl_image_tag surfboard.photo.key %>
+      <div class="card-surfboard">
+        <div>
+          <% if surfboard.photo.attached? %>
+          <%= cl_image_tag surfboard.photo.key, class: "surfboard-index-img" %>
         <% end %>
-        <div class="card-product-infos">
-          <h2><%= surfboard.name %></h2>
-          <p><%= surfboard.description %></p>
+        </div>
+        <div class="card-surfboard-infos">
+          <div class="surfboard-title">
+            <h2><%= surfboard.name %></h2>
+            <p><%= surfboard.description %></p>
+          </div>
+          <div class="surfboard-additional-info">
+            <div class="surfboard-rating">
+              <% num_ratings = surfboard.reviews.size %>
+              <% total_score = surfboard.reviews.map { |review| review.rating }.sum %>
+              <% avg_rating = total_score.positive? ? total_score.fdiv(num_ratings) : "N/A" %>
+              <p><i class="fas fa-star"></i> <%= avg_rating%> (<%= num_ratings %> reviews)</p>
+            </div>
+            <div class="surfboard-pricing">
+              <p>$ <%= surfboard.price_per_day %> / day</p>
+            </div>
+          </div>
         </div>
       </div>
       <% end %>
