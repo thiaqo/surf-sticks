@@ -1,10 +1,13 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Contrail+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Libre+Franklin&family=Rubik+Mono+One&display=swap');
 // Define fonts for body and headers
-$body-font: "Contrail One", "Helvetica", "sans-serif";
+$body-font: "Libre Franklin", "Helvetica", "sans-serif";
 $headers-font: "Bungee Shade", "Helvetica", "sans-serif";
 
+h1 {
+  font-family: 'Bungee Shade', 'sans-serif';
+}
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
