@@ -29,10 +29,27 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'autoprefixer-rails', '10.2.5'
+
+# Font Awesome icons
 gem 'font-awesome-sass'
+
+# Simple form
 gem 'simple_form'
-gem 'faker'
+
+# For photo library and upload
 gem 'cloudinary', '~> 1.16.0'
+
+# Postgres Search
+gem 'pg_search', '~> 2.3.0'
+
+# Algolia Search
+gem "algoliasearch-rails"
+
+# For user sign-in
+gem 'devise'
+
+# Pundit gem for authorisation
+gem 'pundit'
 
 group :development, :test do
   gem 'pry-byebug'
@@ -41,6 +58,9 @@ group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # For seeding database in developmnet and testing
+  gem 'faker'
 end
 
 group :development do
@@ -63,4 +83,3 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise'

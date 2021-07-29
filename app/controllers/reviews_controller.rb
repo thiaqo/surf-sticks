@@ -1,24 +1,28 @@
 class ReviewsController < ApplicationController
-  before_action :find_review
+  before_action :find_booking, only: [:new, :create]
+
   def new
     @review = Review.new
   end
 
   def create
     @review = Review.new(review_params)
-    @review.surfboards = @surfboards
-    @review.save
-    redirect_to_ surfboards_path(@surfboards_show)
+    @review.booking = @booking
+    @review.user = current_user
+    if @review.save
+      redirect_to booking_path(@booking)
+    else
+      render :new
+    end
   end
 
   private
 
-    # Find a surfboard
-  def find_review
-    @surfboards = Review.find(params[:surfboard_id])
+  def review_params
+    params.require(:review).permit(:rating, :comment)
   end
 
-  def review_params
-    params.require(:review).permit(:content, :photo)
+  def find_booking
+    @booking = Booking.find(params[:booking_id])
   end
 end
