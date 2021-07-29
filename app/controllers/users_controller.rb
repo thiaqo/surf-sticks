@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = User.find(current_user.id)
 
-    # Surfboard bookings - where user is the owner of the surfboard
+    # Surfboard bookings - where user is the owner of the surfboard. BETTER
     surfboard_bookings = Booking.joins(:surfboard).where(surfboards: { user_id: @user.id })
     @surfboard_upcoming_bookings = Booking.joins(:surfboard).where(surfboards: { user_id: @user.id })
                                   .where(bookings: { accepted: true }).where("collection_date >= ?", Date.today)
