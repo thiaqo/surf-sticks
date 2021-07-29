@@ -7,13 +7,13 @@
 
   <div class="row">
     <% @surfboards.each do |surfboard| %>
-    <div class="col-12 mb-3">
+    <div class="col-xs-12 col-md-8 col-xl-6 mb-3">
       <%= link_to surfboard_path(surfboard) do %>
 
       <div class="card-surfboard">
         <div>
           <% if surfboard.photo.attached? %>
-          <%= cl_image_tag surfboard.photo.key, class: "surfboard-index-img" %>
+          <%= cl_image_tag surfboard.photo.key, width: 200, height: 200, crop: :thumb, gravity: :face, class: "surfboard-index-img" %>
         <% end %>
         </div>
         <div class="card-surfboard-infos">
