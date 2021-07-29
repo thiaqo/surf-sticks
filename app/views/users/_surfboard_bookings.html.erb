@@ -29,6 +29,13 @@
 
     <% end %>
 
+    <% if bookings_name == "Pending Bookings" %>
+      <div class="d-flex justify-content-around m-3">
+        <%= link_to "Accept", booking_path(booking, booking: { accepted: true }), method: :patch, class: "btn btn-sm btn-outline-success" %>
+        <%= link_to "Decline", booking_path(booking, booking: { accepted: false }), method: :patch, accepted: false, class: "btn btn-sm btn-outline-danger" %>
+      </div>
+    <% end %>
+
     <% end %>
   <% end %>
 </div>
