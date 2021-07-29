@@ -8,282 +8,42 @@
     </div>
   </div>
 
-  <% if @surfboard_bookings_size.positive? %>
+  <% unless current_user.surfboards.size.zero? %>
+    <!-- We won't display this if they have no surfboards -->
   <div class="row my-3">
-    <h2>Bookings for your surfboards</h2>
+    <h2 class="text-center">Bookings for your surfboards</h2>
   </div>
   <% end %>
 
-  <div class="row mt-5">
-    <% unless @surfboard_current_bookings.empty? %>
-    <div class="col-md-6">
-      <h3>Current bookings</h3>
-      <% @surfboard_current_bookings.each do |booking| %>
+  <!-- Let's add in an if statement here so that if there is no data we write an empty statement - otherwise we render 4 cards-->
 
-      <%= link_to booking_path(booking) do %>
-
-        <div class="card-trip">
-          <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key %>
-          <% end %>
-          <div class="card-trip-infos p-3">
-            <div>
-              <p><strong>Borrower: </strong></p>
-              <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-            </div>
-            <h4><%= booking.user.name %></h4>
-            <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-            <p><strong>Total revenue from booking: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-            <% if booking.user.photo.attached? %>
-            <%= cl_image_tag booking.user.photo.key, class: "card-trip-user avatar-bordered" %>
-            <% end %>
-          </div>
-        </div>
-
-      <% end %>
-
-      <% end %>
+  <% if @surfboard_bookings_size.zero? %>
+    <!-- Placeholder for those with surfboards but no bookings -->
+    <h3 class="text-center">There are no surfboards for your surfboards (yet!)</h3>
+  <% else %>
+    <div class="row mt-5">
+      <%= render 'surfboard_bookings', bookings: @surfboard_current_bookings, bookings_name: "Current Bookings" %>
+      <%= render 'surfboard_bookings', bookings: @surfboard_upcoming_bookings, bookings_name: "Upcoming Bookings" %>
+      <%= render 'surfboard_bookings', bookings: @surfboard_pending_bookings, bookings_name: "Pending Bookings" %>
+      <%= render 'surfboard_bookings', bookings: @surfboard_past_bookings, bookings_name: "Past Bookings"  %>
     </div>
-    <% end %>
-
-    <% unless @surfboard_upcoming_bookings.empty? %>
-    <div class="col-md-6">
-      <h3>Upcoming bookings</h3>
-      <% @surfboard_upcoming_bookings.each do |booking| %>
-
-      <%= link_to booking_path(booking) do %>
-
-        <div class="card-trip">
-          <h4><%= booking.user.name %></h4>
-          <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key %>
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h4><%= booking.user.name %></h4>
-              <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-              <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-            </div>
-            <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-            <p><strong>Total revenue from booking: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-            <% if booking.user.photo.attached? %>
-            <%= cl_image_tag booking.user.photo.key, class: "card-trip-user avatar-bordered" %>
-            <% end %>
-          </div>
-        </div>
-
-      <% end %>
-      <% end %>
-    </div>
-    <% end %>
-
-    <% unless @surfboard_pending_bookings.empty?  %>
-    <div class="col-md-6">
-      <h3 class="m-2">Pending bookings</h3>
-      <% @surfboard_pending_bookings.each do |booking| %>
-
-      <%= link_to booking_path(booking) do %>
-
-      <div class="card-trip">
-        <% if booking.surfboard.photo.attached? %>
-        <%= cl_image_tag booking.surfboard.photo.key %>
-        <% end %>
-        <div class="card-trip-infos m-3">
-          <div>
-            <h4><%= booking.user.name %></h4>
-            <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-            <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-            <p><strong>Return date: </strong><%= booking.return_date %></p>
-          </div>
-          <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-          <p><strong>Total revenue from booking: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-          <% if booking.user.photo.attached? %>
-          <%= cl_image_tag booking.user.photo.key, class: "card-trip-user avatar-bordered" %>
-          <% end %>
-        </div>
-      </div>
-      <% end %>
-
-      <div class="d-flex justify-content-around m-3">
-        <%= link_to "Accept", booking_path(booking, booking: { accepted: true }), method: :patch, class: "btn btn-sm btn-outline-success" %>
-        <%= link_to "Decline", booking_path(booking, booking: { accepted: false }), method: :patch, accepted: false, class: "btn btn-sm btn-outline-danger" %>
-      </div>
-      <% end %>
-    </div>
-    <% end %>
-
-    <% unless @surfboard_past_bookings.empty? %>
-    <div class="col-md-6">
-      <h3>Past bookings</h3>
-      <% @surfboard_past_bookings.each do |booking| %>
-
-      <%= link_to booking_path(booking) do %>
-
-      <div class="card-trip">
-        <% if booking.surfboard.photo.attached? %>
-        <%= cl_image_tag booking.surfboard.photo.key %>
-        <% end %>
-        <div class="card-trip-infos">
-          <div>
-            <h4><%= booking.user.name %></h4>
-            <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-            <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-            <p><strong>Return date: </strong><%= booking.return_date %></p>
-          </div>
-          <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-          <p><strong>Total revenue from booking: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-          <% if booking.user.photo.attached? %>
-          <%= cl_image_tag booking.user.photo.key, class: "card-trip-user avatar-bordered" %>
-          <% end %>
-        </div>
-      </div>
-      <% end %>
-    <% end %>
-
-    </div>
-    <% end %>
-
-  </div>
-
-
-
-
-
-  <% if @user_bookings_size.positive? %>
-  <div class="row my-3">
-    <h2>Your bookings for others' surfboards</h2>
-  </div>
   <% end %>
 
-  <div class="row">
-    <% unless @user_current_bookings.empty?  %>
-    <div class="col-md-6">
-      <h3>Current bookings</h3>
-      <% @user_current_bookings.each do |booking| %>
 
-
-      <%= link_to booking_path(booking) do %>
-        <div class="card-trip">
-          <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key %>
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h4><%= booking.surfboard.user.email %></h4>
-              <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-              <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-            </div>
-            <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-            <p><strong>Total price: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-            <% if booking.surfboard.user.photo.attached? %>
-            <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
-            <% end %>
-          </div>
-        </div>
-
-      <% end %>
-
+  <% unless current_user.bookings.size.zero? %>
+    <!-- We won't display this if they have no bookings -->
+    <div class="row my-3">
+      <h2 class="text-center">Your bookings for others' surfboards</h2>
     </div>
-    <% end %>
-    <% end %>
+  <% end %>
 
-    <% unless @user_upcoming_bookings  %>
-    <div class="col-md-6">
-      <h3>Upcoming bookings</h3>
-      <% @user_upcoming_bookings.each do |booking| %>
-
-      <%= link_to booking_path(booking) do %>
-        <div class="card-trip">
-          <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key %>
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h4><%= booking.surfboard.user.email %></h4>
-              <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-              <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-            </div>
-            <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-            <p><strong>Total price: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-            <% if booking.surfboard.user.photo.attached? %>
-            <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
-            <% end %>
-          </div>
-        </div>
-
-      <% end %>
-
+    <div class="row mt-5">
+      <%= render 'user_bookings', bookings: @user_current_bookings, bookings_name: "Current Bookings" %>
+      <%= render 'user_bookings', bookings: @user_upcoming_bookings, bookings_name: "Upcoming Bookings"  %>
+      <%= render 'user_bookings', bookings: @user_pending_bookings, bookings_name: "Pending Bookings" %>
+      <%= render 'user_bookings', bookings: @user_past_bookings, bookings_name: "Past Bookings" %>
     </div>
-    <% end %>
-    <% end %>
 
-    <% unless @user_pending_bookings.empty? %>
-    <div class="col-md-6">
-      <h3>Pending bookings</h3>
-      <% @user_pending_bookings.each do |booking| %>
-
-      <%= link_to booking_path(booking) do %>
-        <div class="card-trip">
-          <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key %>
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h4><%= booking.surfboard.user.email %></h4>
-              <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-              <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-            </div>
-            <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-            <p><strong>Total price: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-            <% if booking.surfboard.user.photo.attached? %>
-            <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
-            <% end %>
-          </div>
-        </div>
-
-      <% end %>
-
-    </div>
-    <% end %>
-    <% end %>
-
-    <% unless @user_past_bookings.empty?  %>
-    <div class="col-md-6">
-      <h3>Past bookings</h3>
-      <% @user_past_bookings.each do |booking| %>
-
-      <%= link_to booking_path(booking) do %>
-        <div class="card-trip">
-          <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key %>
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h4><%= booking.surfboard.user.email %></h4>
-              <p><strong>Surfboard: </strong><%= booking.surfboard.name %> </p>
-              <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-              <p><strong>Return date: </strong><%= booking.return_date %></p>
-            </div>
-            <p><strong>Price per day: </strong><%= booking.price_per_day %></p>
-            <p><strong>Total price: </strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-            <% if booking.surfboard.user.photo.attached? %>
-            <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
-            <% end %>
-          </div>
-        </div>
-
-      <% end %>
-    </div>
-    <% end %>
-
-    <% end %>
-
-  </div>
 
 
 
@@ -295,29 +55,7 @@
   </div>
 
   <div class="row my-3">
-    <% current_user.surfboards.each do |surfboard| %>
-    <div class="col-md-6 my-4">
-
-      <div class="card-trip h-100">
-        <% if surfboard.photo.attached? %>
-        <%= cl_image_tag surfboard.photo.key %>
-        <% end %>
-        <div class="card-trip-infos">
-          <div>
-            <h4><%= surfboard.description %></h4>
-            <p><strong>Length: </strong><%= surfboard.length %> inches</p>
-            <p><strong>Volume: </strong><%= surfboard.volume %></p>
-            <p><strong>Board type: </strong><%= surfboard.board_type %></p>
-            <p><strong>Fin type: </strong><%= surfboard.fin_type %></p>
-            <p><strong>Brand: </strong><%= surfboard.brand %></p>
-            <h2 class="card-trip-pricing">Price per day: $<%= surfboard.price_per_day %></h2>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <% end %>
+    <%= render 'surfboards', surfboards: current_user.surfboards %>
   </div>
-
 
 </div>

@@ -23,7 +23,6 @@ class BookingsController < ApplicationController
   def update
     @booking.accepted = accepted_to_boolean
     @booking.save
-    # raise
     redirect_to dashboard_path(current_user)
   end
 
