@@ -15,5 +15,7 @@ class UsersController < ApplicationController
     @user_pending_bookings = User.find(current_user.id).bookings.where(accepted: nil).where("collection_date >= ?", Date.today)
     @user_past_bookings = User.find(current_user.id).bookings.where(accepted: true).where("return_date < ?", Date.today)
     @user_bookings_size = (@user_upcoming_bookings.size + @user_current_bookings.size + @user_pending_bookings.size + @user_past_bookings.size)
+
+    authorize @user
   end
 end

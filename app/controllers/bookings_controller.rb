@@ -4,6 +4,8 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @surfboard = Surfboard.find(params[:surfboard_id])
+    @booking.surfboard = @surfboard
+    authorize @booking
   end
 
   def create
@@ -11,6 +13,7 @@ class BookingsController < ApplicationController
     @surfboard = Surfboard.find(params[:surfboard_id])
     @booking.surfboard = @surfboard
     @booking.user = User.find(current_user.id)
+    authorize @booking
     if @booking.save
       redirect_to booking_path(@booking)
     else
@@ -18,11 +21,15 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @review = Review.new(booking: @booking)
+    authorize @booking
+  end
 
   def update
     @booking.accepted = accepted_to_boolean
     @booking.save
+    authorize @booking
     redirect_to dashboard_path(current_user)
   end
 

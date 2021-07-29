@@ -10,7 +10,7 @@
 
     <div class="card-trip">
       <% if booking.surfboard.photo.attached? %>
-      <%= cl_image_tag booking.surfboard.photo.key %>
+        <%= cl_image_tag booking.surfboard.photo.key %>
       <% end %>
       <div class="card-trip-infos p-3">
         <div>
@@ -21,8 +21,8 @@
         <h4><%= booking.surfboard.user.name %></h4>
         <p><strong>Price per day: $</strong><%= booking.price_per_day %></p>
         <p><strong>Total price: $</strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
-        <% if booking.user.photo.attached? %>
-        <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
+        <% if booking.surfboard.user.photo.attached? %>
+          <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
         <% end %>
       </div>
     </div>

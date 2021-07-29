@@ -1,21 +1,25 @@
 class SurfboardsController < ApplicationController
   def index
-    @surfboards = Surfboard.all
+    @surfboards = policy_scope(Surfboard).order(created_at: :desc)
+    @surfboards = @surfboards.reject { |surfboard| surfboard.user == current_user }
   end
 
   def show
     @surfboard = Surfboard.find(params[:id])
-    # raise
+    @booking = Booking.new(surfboard: @surfboard)
+    authorize @surfboard
   end
 
   def new
     @surfboard = Surfboard.new
     @user = User.find(params[:user_id])
+    authorize @surfboard
   end
 
   def create
     @surfboard = Surfboard.new(surfboard_params)
     @surfboard.user = User.find(params[:user_id])
+    authorize @surfboard
     if @surfboard.save
       redirect_to surfboard_path(@surfboard), notice: 'Surfboard was successfully created.'
     else
@@ -25,11 +29,13 @@ class SurfboardsController < ApplicationController
 
   def edit
     @surfboard = Surfboard.find(params[:id])
+    authorize @surfboard
   end
 
   def update
     @surfboard = Surfboard.find(params[:id])
     @surfboard.update(surfboard_params)
+    authorize @surfboard
     redirect_to surfboard_path(@surfboard)
   end
 
