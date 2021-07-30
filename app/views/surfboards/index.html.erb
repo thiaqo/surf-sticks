@@ -13,12 +13,15 @@
       <div class="card-surfboard">
         <div>
           <% if surfboard.photo.attached? %>
-          <%= cl_image_tag surfboard.photo.key, width: 200, height: 200, crop: :thumb, gravity: :face, class: "surfboard-index-img" %>
+          <%= cl_image_tag surfboard.photo.key, width: 200, height: 200, crop: :thumb, gravity: :face, class: "surfboard-index-img"%>
         <% end %>
         </div>
         <div class="card-surfboard-infos">
           <div class="surfboard-title">
-            <h2><%= surfboard.name %></h2>
+            <% feet = surfboard.length / 12 %>
+            <% inches = surfboard.length % 12 %>
+            <% length = "#{feet}'#{inches}\"" %>
+            <h2><%= length %> <%= surfboard.name %></h2>
             <p><%= surfboard.description %></p>
           </div>
           <div class="surfboard-additional-info">
