@@ -19,6 +19,8 @@
     opacity: .7;
     margin-bottom: 0;
     margin-top: 8px;
+    letter-spacing: 2px;
+    font-weight: 600;
   }
 
   .card-surfboard-infos {
@@ -45,6 +47,10 @@
   padding-top: 20px;
   line-height: 3;
   color:white;
+
+  p {
+    letter-spacing: 2px;
+  }
 }
 
 .surfboard-additional-info {

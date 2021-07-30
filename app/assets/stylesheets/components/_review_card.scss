@@ -1,0 +1,18 @@
+.card-review {
+  overflow: hidden;
+  height: 50px;
+  width: 100%;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
+
+  p {
+    font-weight: 600;
+    color: black;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+}

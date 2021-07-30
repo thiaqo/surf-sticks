@@ -43,11 +43,13 @@
 
   <div class="row my-5">
     <div class="col">
-      <h2>Reviews for <%= @surfboard.name %></h2>
-      <% @surfboard.reviews.each do |review| %>
-      <p><%= review.rating %></p>
-      <p><%= review.comment %></p>
-      <% end %>
+        <h2>Reviews for <%= @surfboard.name %></h2>
+        <% @surfboard.reviews.each do |review| %>
+        <div class="card-review">
+          <p><em>"<%= review.comment %>!"</em> shouts <%= review.user.username %></p>
+          <p>Rating: <%= review.rating %> / 5</p>
+        </div>
+        <% end %>
     </div>
   </div>
 </div>
