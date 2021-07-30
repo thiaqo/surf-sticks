@@ -13,20 +13,23 @@
 <div class="container my-5">
   <div class="row">
     <div class="col">
-      <div class="d-flex justify-content-between">
+      <div class="card-surfboard-show">
         <% if @surfboard.photo.attached? %>
         <div class="card-box">
-        <%= cl_image_tag @surfboard.photo.key, width: 400, height: 400, border: 5 %>
+        <%= cl_image_tag @surfboard.photo.key, width: 400, height: 400, crop: :thumb, gravity: :face, class: "surfboard-index-img"%>
         </div>
         <% end %>
-          <div>
-            <h2><%= @surfboard.description %></h2>
-            <p><strong>Length: </strong><%= @surfboard.length %> inches</p>
-            <p><strong>Volume: </strong><%= @surfboard.volume %></p>
+          <div class="card-surfboard-show-info">
+            <% feet = @surfboard.length / 12 %>
+            <% inches = @surfboard.length % 12 %>
+            <% length = "#{feet}'#{inches}\"" %>
+            <h2><%= length %> <%= @surfboard.name %></h2>
+            <p><strong>Description: </strong><%= @surfboard.description %></p>
+            <p><strong>Volume: </strong><%= @surfboard.volume %> liters</p>
             <p><strong>Board type: </strong><%= @surfboard.board_type %></p>
             <p><strong>Fin type: </strong><%= @surfboard.fin_type %></p>
             <p><strong>Brand: </strong><%= @surfboard.brand %></p>
-            <p><strong>Username: </strong><%= @surfboard.user.username %></p>
+            <p><strong>Owner: </strong><%= @surfboard.user.username %></p>
             <h2 class="card-trip-pricing">Price per day: $<%= @surfboard.price_per_day %></h2>
           </div>
       </div>
