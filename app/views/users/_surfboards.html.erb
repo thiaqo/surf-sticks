@@ -13,9 +13,12 @@
             <% end %>
             <div class="card-trip-infos">
               <div>
-                <h4><%= surfboard.description %></h4>
-                <p><strong>Length: </strong><%= surfboard.length %> inches</p>
-                <p><strong>Volume: </strong><%= surfboard.volume %></p>
+                <% feet = surfboard.length / 12 %>
+                <% inches = surfboard.length % 12 %>
+                <% length = "#{feet}'#{inches}\"" %>
+                <h2><%= length %> <%= surfboard.name %></h2>
+                <p><strong>Description: </strong><%= surfboard.description %></p>
+                <p><strong>Volume: </strong><%= surfboard.volume %> liters</p>
                 <p><strong>Board type: </strong><%= surfboard.board_type %></p>
                 <p><strong>Fin type: </strong><%= surfboard.fin_type %></p>
                 <p><strong>Brand: </strong><%= surfboard.brand %></p>

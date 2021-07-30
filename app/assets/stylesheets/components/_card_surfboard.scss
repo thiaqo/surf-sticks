@@ -26,18 +26,24 @@
     justify-content: space-between;
   }
 }
+
 .card-surfboard-show {
   overflow: hidden;
   height: 400px;
-  background: $light-green;
+  background: $cool-gray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   justify-content: space-between;
+
 }
+
 .card-surfboard-show-info {
-  padding-right: 100px;
-  padding-top: 100px;
+  padding-right: 170px;
+  padding-top: 20px;
+  line-height: 3;
+  color:white;
 }
+
 .surfboard-additional-info {
   display: flex;
   justify-content: space-between;
