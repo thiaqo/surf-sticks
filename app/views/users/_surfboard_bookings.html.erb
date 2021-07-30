@@ -14,7 +14,7 @@
 
       <%= link_to booking_path(booking) do %>
 
-      <div class="card-surfboard">
+      <div class="card-surfboard my-3">
         <div>
           <% if booking.surfboard.photo.attached? %>
           <%= cl_image_tag booking.surfboard.photo.key, width: 200, height: 200, crop: :thumb, gravity: :face, class: "surfboard-index-img" %>
