@@ -19,7 +19,7 @@
 
   <% if @surfboard_bookings_size.zero? %>
     <!-- Placeholder for those with surfboards but no bookings -->
-    <h3 class="text-center">There are no surfboards for your surfboards (yet!)</h3>
+    <h3 class="text-center">There are no bookings for your surfboards (yet!)</h3>
   <% else %>
     <div class="row">
       <% unless @surfboard_current_bookings.empty? %>
@@ -53,11 +53,11 @@
     <div class="row my-5">
       <h2 class="text-center">Your bookings for others' surfboards</h2>
     </div>
-  <% end %>
 
     <div class="row my-5">
       <%= render 'user_bookings', bookings: @user_bookings %>
     </div>
+  <% end %>
 
 
 

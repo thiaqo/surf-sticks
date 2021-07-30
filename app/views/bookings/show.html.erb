@@ -1,38 +1,39 @@
 <div class="container my-5">
   <div class="row justify-content-between">
-      <h1>Booking for <%= @booking.surfboard.name %></h1>
-      <div>
-        <%= link_to "Back to surfboard", surfboard_path(@booking.surfboard), class: "btn btn-outline-secondary" %>
-      </div>
+    <h1>Booking for <%= @booking.surfboard.name %></h1>
+    <div>
+      <%= link_to "Back to surfboard", surfboard_path(@booking.surfboard), class: "btn btn-outline-secondary" %>
+    </div>
   </div>
 </div>
+
 
 <div class="container my-5">
   <div class="row">
     <div class="col">
-      <div class="card-trip">
+      <div class="card-surfboard-show">
         <% if @booking.surfboard.photo.attached? %>
-          <%= cl_image_tag @booking.surfboard.photo.key %>
+        <div class="card-box">
+          <%= cl_image_tag @booking.surfboard.photo.key, width: 400, height: 400, crop: :thumb, gravity: :face, class: "surfboard-index-img"%>
+        </div>
         <% end %>
-        <div class="card-trip-infos">
-          <div>
-            <p><strong>Collection date: </strong><%= @booking.collection_date %></p>
-            <p><strong>Return date: </strong><%= @booking.return_date %></p>
-            <h2 class="card-trip-pricing">Price per day: $<%= @booking.price_per_day %></h2>
-            <p><strong>Status: </strong><%= @booking.accepted %></p>
-            <p><strong>Owner: </strong><%= @booking.surfboard.user.name %></p>
-            <% if @booking.surfboard.user.photo.attached? %>
-              <%= cl_image_tag @booking.surfboard.user.photo.key, class: "avatar-bordered" %>
-            <% end %>
-          </div>
+        <div class="card-surfboard-show-info">
+          <p><strong>Collection date: </strong><%= @booking.collection_date %></p>
+          <p><strong>Return date: </strong><%= @booking.return_date %></p>
+          <p><strong>Price per day: </strong>$<%= @booking.price_per_day %></p>
+          <p><strong>Status: </strong><%= @booking.accepted %></p>
+          <p><strong>Owner: </strong><%= @booking.surfboard.user.name %></p>
+          <% if @booking.surfboard.user.photo.attached? %>
+          <%= cl_image_tag @booking.surfboard.user.photo.key, class: "avatar-bordered" %>
+          <% end %>
         </div>
         <div class="d-flex justify-content-center my-2">
           <% if policy(@review).new? %>
-            <%= link_to "Leave a review", new_booking_review_path(@booking), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to "Leave a review", new_booking_review_path(@booking), class: "btn btn-sm btn-outline-secondary" %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-
 </div>
+
