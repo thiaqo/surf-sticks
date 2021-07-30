@@ -1,29 +1,31 @@
 <div class="container">
-  <h1>New Surfboard</h1>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
 
-<%= simple_form_for [@user, @surfboard] do |f| %>
-  <%#= f.error_notification %>
-  <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <h1>Add a new surfboard</h1>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :board_type %>
-    <%= f.input :fin_type %>
-    <%= f.input :brand %>
-    <%= f.input :length %>
-    <%= f.input :volume %>
-    <%= f.input :price_per_day %>
-    <%= f.input :address %>
-    <%= f.input :photo, as: :file %>
+      <%= simple_form_for [@user, @surfboard] do |f| %>
+
+        <div class="form-inputs">
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.input :board_type %>
+          <%= f.input :fin_type %>
+          <%= f.input :brand %>
+          <%= f.input :length %>
+          <%= f.input :volume %>
+          <%= f.input :price_per_day %>
+          <%= f.input :address %>
+          <%= f.input :photo, as: :file %>
+        </div>
+
+      <div class="form-actions">
+        <%= f.submit %>
+      </div>
+      <% end %>
+
+      <%= link_to 'Back', surfboards_path %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', surfboards_path %>
 </div>
-
 

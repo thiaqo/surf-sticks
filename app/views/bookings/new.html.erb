@@ -1,7 +1,12 @@
 <div class="container">
+  <div class="row justify-content-between my-5">
+    <h1 class="text-center">Book <%= @surfboard.name %></h1>
+    <div>
+      <%= link_to "Back to surfboard", surfboard_path(@surfboard), class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
   <div class="row">
-    <div class="col">
-      <h1 class="text-center my-5">Make a booking for <%= @surfboard.name %></h1>
+    <div class="col-md-8 mx-auto">
 
       <div class="form-container my-3">
         <%= simple_form_for [@surfboard, @booking] do |f| %>
