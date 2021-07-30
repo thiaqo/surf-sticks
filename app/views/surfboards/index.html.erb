@@ -26,7 +26,7 @@
               <% num_ratings = surfboard.reviews.size %>
               <% total_score = surfboard.reviews.map { |review| review.rating }.sum %>
               <% avg_rating = total_score.positive? ? total_score.fdiv(num_ratings) : "N/A" %>
-              <p><i class="fas fa-star"></i> <%= avg_rating%> (<%= num_ratings %> reviews)</p>
+              <p><i class="fas fa-star"></i> <%= avg_rating%> (<%= pluralize num_ratings, "review" %>)</p>
             </div>
             <div class="surfboard-pricing">
               <p>$ <%= surfboard.price_per_day %> / day</p>

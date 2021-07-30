@@ -6,6 +6,11 @@
         <%= link_to "Make a booking", new_surfboard_booking_path(@surfboard), class: "btn btn-outline-secondary" %>
       </div>
     <% end %>
+    <% if policy(@surfboard).edit? %>
+      <div>
+        <%= link_to "Edit surfboard", edit_surfboard_path(@surfboard), class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
 
   </div>
 </div>

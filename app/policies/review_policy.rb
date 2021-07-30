@@ -15,9 +15,9 @@ class ReviewPolicy < ApplicationPolicy
 
   private
 
-  # Check that user is not same as owner of surboard and that time since booking ended is 0-14 days
+  # Check that user is not same as owner of surboard and that time since booking ended is 1-14 days
   def review_permission
     time_elapsed = (Date.today - record.booking.return_date).to_i
-    user = record.surfboard.user && time_elapsed.positive? && time_elapsed <= 14
+    user == record.booking.user && time_elapsed.positive? && time_elapsed <= 14
   end
 end

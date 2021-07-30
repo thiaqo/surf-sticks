@@ -2,7 +2,7 @@ class BookingPolicy < ApplicationPolicy
 
 
   def show?
-    user = record.user || user = record.surfboard.user
+    user == record.user || user == record.surfboard.user
   end
 
   def create?
@@ -14,7 +14,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
-    user = record.user || user = record.surfboard.user
+    user == record.user || user == record.surfboard.user
   end
 
   class Scope < Scope
