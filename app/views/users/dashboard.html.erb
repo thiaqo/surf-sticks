@@ -10,7 +10,7 @@
 
   <% unless current_user.surfboards.size.zero? %>
     <!-- We won't display this if they have no surfboards -->
-  <div class="row my-3">
+  <div class="row my-5">
     <h2 class="text-center">Bookings for your surfboards</h2>
   </div>
   <% end %>
@@ -21,37 +21,44 @@
     <!-- Placeholder for those with surfboards but no bookings -->
     <h3 class="text-center">There are no surfboards for your surfboards (yet!)</h3>
   <% else %>
-    <div class="row mt-5">
-      <%= render 'surfboard_bookings', bookings: @surfboard_current_bookings, bookings_name: "Current Bookings" %>
-      <%= render 'surfboard_bookings', bookings: @surfboard_upcoming_bookings, bookings_name: "Upcoming Bookings" %>
-      <%= render 'surfboard_bookings', bookings: @surfboard_pending_bookings, bookings_name: "Pending Bookings" %>
-      <%= render 'surfboard_bookings', bookings: @surfboard_past_bookings, bookings_name: "Past Bookings"  %>
-    </div>
+
+      <% unless @surfboard_current_bookings.empty? %>
+        <%= render 'surfboard_bookings', bookings: @surfboard_current_bookings, bookings_name: "Current Bookings" %>
+      <% end %>
+      <% unless @surfboard_upcoming_bookings.empty? %>
+        <%= render 'surfboard_bookings', bookings: @surfboard_upcoming_bookings, bookings_name: "Upcoming Bookings" %>
+      <% end %>
+      <% unless @surfboard_pending_bookings.empty? %>
+        <%= render 'surfboard_bookings', bookings: @surfboard_pending_bookings, bookings_name: "Pending Bookings" %>
+      <% end %>
+      <% unless @surfboard_past_bookings.empty? %>
+        <%= render 'surfboard_bookings', bookings: @surfboard_past_bookings, bookings_name: "Past Bookings"  %>
+      <% end %>
   <% end %>
 
 
   <% unless current_user.bookings.size.zero? %>
     <!-- We won't display this if they have no bookings -->
-    <div class="row my-3">
+    <div class="row my-5">
       <h2 class="text-center">Your bookings for others' surfboards</h2>
     </div>
   <% end %>
 
-    <div class="row mt-5">
+    <div class="row my-5">
       <%= render 'user_bookings', bookings: @user_bookings %>
     </div>
 
 
 
 
-  <div class="row mt-5 justify-content-between">
+  <div class="row my-5 justify-content-between">
     <h2>Your surfboards</h2>
     <div>
       <%= link_to "Add a surfboard", new_user_surfboard_path(current_user), class: "btn btn-outline-secondary" %>
     </div>
   </div>
 
-  <div class="row my-3">
+  <div class="row my-5">
     <%= render 'surfboards', surfboards: current_user.surfboards %>
   </div>
 
