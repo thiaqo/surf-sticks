@@ -1,36 +1,46 @@
 <% bookings.each do |booking| %>
 
-  <%= link_to booking_path(booking) do %>
 
-    <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-lg-8 col-xl-6 mb-3 mx-auto">
+
+    <%= link_to booking_path(booking) do %>
       <div class="card-surfboard">
-        <% if booking.surfboard.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.photo.key, width: 200, height: 200, crop: :thumb, gravity: :face, class: "surfboard-index-img" %>
-        <% end %>
-
-      <div class="card-surfboard-infos">
-        <div class="surfboard-title">
-          <h4><%= booking.surfboard.name %></h4>
-          <p><%= booking.surfboard.description %></p>
-      </div>
-      <div class="surfboard-additional-info">
-        <div class="surfboard-rating">
-          <p><strong>Collection date: </strong><%= booking.collection_date %></p>
-          <p><strong>Return date: </strong><%= booking.return_date %></p>
+        <div>
+          <% if booking.surfboard.photo.attached? %>
+            <%= cl_image_tag booking.surfboard.photo.key, width: 200, height: 200, crop: :thumb, gravity: :face, class: "surfboard-index-img" %>
+          <% end %>
         </div>
-        <div class="surfboard-pricing">
-          <p><strong>Price per day: $</strong><%= booking.price_per_day %></p>
-          <p><strong>Total price: $</strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
+
+        <div class="card-surfboard-infos">
+          <div class="surfboard-title">
+            <h4><%= booking.surfboard.name %></h4>
+            <p><%= booking.surfboard.description %></p>
+          </div>
+        <div class="surfboard-additional-info">
+          <div class="surfboard-rating">
+            <p><strong>Collection date: </strong><%= booking.collection_date %></p>
+            <p><strong>Return date: </strong><%= booking.return_date %></p>
+            <% if booking.accepted %>
+              <% status = "Confirmed" %>
+            <% elsif booking.accepted == nil %>
+              <% status = "Pending" %>
+            <% else %>
+              <% status = "Rejected" %>
+            <% end %>
+            <p><strong>Status: </strong><%= status %></p>
+          </div>
+          <div class="surfboard-pricing">
+            <p><strong>Price per day: $</strong><%= booking.price_per_day %></p>
+            <p><strong>Total price: $</strong><%= booking.price_per_day * (booking.return_date - booking.collection_date).to_i %></p>
+          </div>
+        </div>
+          <% if booking.surfboard.user.photo.attached? %>
+            <%= cl_image_tag booking.surfboard.user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,  class: "card-trip-user avatar-bordered" %>
+          <% end %>
+
         </div>
       </div>
-        <% if booking.surfboard.user.photo.attached? %>
-          <%= cl_image_tag booking.surfboard.user.photo.key, class: "card-trip-user avatar-bordered" %>
-        <% end %>
-
-      </div>
-    </div>
-    </div>
-  <% end %>
-
+    <% end %>
+  </div>
 <% end %>
 
