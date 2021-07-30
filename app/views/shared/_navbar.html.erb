@@ -2,10 +2,9 @@
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "single-fin-simple.jpeg", class:"avatar" %>
   <% end %>
-
   <%= link_to "/", class: "navbar-brand" do %>
     <div class="d-flex justify-content-center">
-      <h1>surf-sticks</h1>
+      <h1>surfsticks</h1>
     </div>
   <% end %>
 
@@ -18,16 +17,16 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
       <li class="nav-item-active">
-        <%= link_to "Surfboards", "/surfboards", class: "nav-link" %>
+        <%= link_to "Surfboards", "/surfboards", class: "nav-link", style: 'color:white; letter-spacing: 2px; margin-right: 5px' %>
       </li>
       <li class="nav-item-active">
-        <%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", class: "nav-link" %>
+        <%= link_to "Dashboard", "/users/#{current_user.id}/dashboard", class: "nav-link", style: 'color:white; letter-spacing: 2px; margin-right: 15px' %>
       </li>
         <li class="nav-item dropdown">
           <% if current_user.photo.attached? %>
             <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else  %>
-            <%= image_tag "", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= image_tag "user-black.svg", width: 40, height: 40, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -37,7 +36,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link", style: 'color:white; letter-spacing: 2px; margin-right: 5px' %>
         </li>
       <% end %>
     </ul>
