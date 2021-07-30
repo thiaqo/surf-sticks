@@ -4,14 +4,12 @@
   background: $cool-gray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
-
   h2 {
     color: white;
     font-size: 1.4em;
     font-weight: bold;
     margin: 0;
   }
-
   p {
     color: white;
     font-size: 1em;
@@ -20,7 +18,6 @@
     margin-bottom: 0;
     margin-top: 8px;
   }
-
   .card-surfboard-infos {
     flex-grow: 1;
     padding: 1em;
@@ -51,13 +48,11 @@
   display: flex;
   justify-content: space-between;
 }
-
 .surfboard-rating {
   .fas.fa-star {
     color: rgb(255, 179, 30);
   }
 }
-
 .surfboard-index-img {
   height: 100%;
   object-fit: cover;
