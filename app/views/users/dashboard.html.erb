@@ -21,19 +21,30 @@
     <!-- Placeholder for those with surfboards but no bookings -->
     <h3 class="text-center">There are no surfboards for your surfboards (yet!)</h3>
   <% else %>
-
+    <div class="row">
       <% unless @surfboard_current_bookings.empty? %>
-        <%= render 'surfboard_bookings', bookings: @surfboard_current_bookings, bookings_name: "Current Bookings" %>
+        <div class="col-xs-12 col-lg-8 col-xl-6 mb-3 mx-auto">
+          <%= render 'surfboard_bookings', bookings: @surfboard_current_bookings, bookings_name: "Current Bookings" %>
+        </div>
       <% end %>
       <% unless @surfboard_upcoming_bookings.empty? %>
-        <%= render 'surfboard_bookings', bookings: @surfboard_upcoming_bookings, bookings_name: "Upcoming Bookings" %>
+        <div class="col-xs-12 col-lg-8 col-xl-6 mb-3 mx-auto">
+          <%= render 'surfboard_bookings', bookings: @surfboard_upcoming_bookings, bookings_name: "Upcoming Bookings" %>
+        </div>
       <% end %>
+
       <% unless @surfboard_pending_bookings.empty? %>
-        <%= render 'surfboard_bookings', bookings: @surfboard_pending_bookings, bookings_name: "Pending Bookings" %>
+        <div class="col-xs-12 col-lg-8 col-xl-6 mb-3 mx-auto">
+          <%= render 'surfboard_bookings', bookings: @surfboard_pending_bookings, bookings_name: "Pending Bookings" %>
+        </div>
       <% end %>
+
       <% unless @surfboard_past_bookings.empty? %>
-        <%= render 'surfboard_bookings', bookings: @surfboard_past_bookings, bookings_name: "Past Bookings"  %>
+        <div class="col-xs-12 col-lg-8 col-xl-6 mb-3 mx-auto">
+          <%= render 'surfboard_bookings', bookings: @surfboard_past_bookings, bookings_name: "Past Bookings"  %>
+        </div>
       <% end %>
+    </div>
   <% end %>
 
 
